@@ -16,7 +16,7 @@
       <div class="container">
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
-               <div class="cart-item">
+               <div class="cart-item" id="iPhone-order-box">
                   <div class="row">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
@@ -33,12 +33,12 @@
                            <button id="add-iPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5>$<span id="iPhone-total-cost">1219</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" class="remove-item" id="delete-iPhone-order-box">
                      </div>
                   </div>
                </div>
 
-               <div class="cart-item">
+               <div class="cart-item" id="phone-case-order-box">
                   <div class="row">
                      <div class="col-md-7 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
@@ -55,7 +55,7 @@
 
                         </div>
                         <h5>$ <span id="phone-case-total-cost">59</span></h5>
-                        <img src="images/remove.png" alt="" class="remove-item">
+                        <img src="images/remove.png" alt="" class="remove-item" id="delete-phone-case-order-box">
                      </div>
                   </div>
                </div>
@@ -184,6 +184,32 @@
       function getSubTotal(){
          const strSubTotal = document.getElementById("sub-total").innerText;
          return parseFloat(strSubTotal);
+      }
+
+      // delete iPhone box from cart's product list
+      const deleteIPhoneBox = document.getElementById("delete-iPhone-order-box");
+      deleteIPhoneBox.addEventListener("click", function(){
+         document.getElementById("iPhone-order-box").style.display = "none";
+         adjustTotalBill("iPhone-total-cost");
+      })
+
+      // delete phone case box from cart's product list
+      const deletePhoneCaseBox = document.getElementById("delete-phone-case-order-box");
+      deletePhoneCaseBox.addEventListener("click", function(){
+         document.getElementById("phone-case-order-box").style.display = "none";
+         adjustTotalBill("phone-case-total-cost");
+      })
+
+      // adjust total bill after deleting an item box from cart list
+      function adjustTotalBill(itemTotalCostId){
+         adjustSubTotal(itemTotalCostId);
+         document.getElementById("total-bill").innerText = getSubTotal();
+      }
+
+      // adjust sub total after deleting an item box from cart list
+      function adjustSubTotal(itemTotalCostId){
+         const itemTotalCost = getCurrentTotal(itemTotalCostId);
+         document.getElementById("sub-total").innerText = getSubTotal() - itemTotalCost;
       }
    </script>
 </body>
