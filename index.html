@@ -70,7 +70,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="sub-total">1278</span></h5>
                         <h5>$0</h5>
                         <h5>$1,278</h5>
                      </div>
@@ -90,6 +90,7 @@
       addIPhone.addEventListener("click", function(){
          addToCart("iPhone-order-quantity");
          updateItemBill("iPhone-price", "iPhone-total-cost", true);
+         updateTotalBill("iPhone-price", true);
       })
 
       // revert order
@@ -137,6 +138,27 @@
       function getCurrentTotal(totalCostIdForItem){
          const strTotalCost = document.getElementById(totalCostIdForItem).innerText;
          return parseFloat(strTotalCost);
+      }
+
+      // update overall bill with each change in order
+      function updateTotalBill(itemPriceId, buyDecision){
+         updateSubTotal(itemPriceId, buyDecision);
+
+      }
+
+      // update sub total cost with each change in order
+      function updateSubTotal(itemPriceId, buyDecision){
+         const itemPrice = getUnitPrice(itemPriceId);
+         const currentSubTotal = getSubTotal();
+         if(buyDecision == true){
+            document.getElementById("sub-total").innerText = currentSubTotal + itemPrice;
+         }
+      }
+
+      // get sub total amount
+      function getSubTotal(){
+         const strSubTotal = document.getElementById("sub-total").innerText;
+         return parseFloat(strSubTotal);
       }
    </script>
 </body>
