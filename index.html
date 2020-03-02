@@ -25,8 +25,8 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="iPhone-order-qunatity" type="text" class="form-control text-center" value="1">
+                           <button id="remove-iPhone" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="iPhone-order-quantity" type="text" class="form-control text-center" value="1">
                            <button id="add-iPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
                         <h5 id="iPhone-total-cost">$1219</h5>
@@ -82,7 +82,13 @@
       // order i-Phone
       const addIPhone = document.getElementById("add-iPhone");
       addIPhone.addEventListener("click", function(){
-         addToCart("iPhone-order-qunatity");
+         addToCart("iPhone-order-quantity");
+      })
+
+      // revert order
+      const removeIPhone = document.getElementById("remove-iPhone");
+      removeIPhone.addEventListener("click", function(){
+         removeFromCart("iPhone-order-quantity")
       })
 
       // add item to the shopping cart
@@ -90,6 +96,20 @@
          const strCurrentQuantity = document.getElementById(itemIdName).value;
          const updatedQuantity = parseInt(strCurrentQuantity) + 1;
          document.getElementById(itemIdName).value = updatedQuantity;
+      }
+
+      // remove item from shopping cart
+      function removeFromCart(itemIdName){
+         const currentQuantity = getCurrentQuantity(itemIdName);
+         if(currentQuantity >= 1){
+            document.getElementById(itemIdName).value = currentQuantity - 1;
+         }
+      }
+
+      // current order quantity of an item
+      function getCurrentQuantity(itemIdName){
+         const strCurrentQuantity = document.getElementById(itemIdName).value;
+         return parseInt(strCurrentQuantity);
       }
    </script>
 </body>
