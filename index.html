@@ -72,7 +72,7 @@
                      <div class="col-md-4 status">
                         <h5>$ <span id="sub-total">1278</span></h5>
                         <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="total-bill">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -143,7 +143,7 @@
       // update overall bill with each change in order
       function updateTotalBill(itemPriceId, buyDecision){
          updateSubTotal(itemPriceId, buyDecision);
-
+         document.getElementById("total-bill").innerText = getSubTotal();
       }
 
       // update sub total cost with each change in order
