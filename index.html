@@ -96,7 +96,9 @@
       // revert order
       const removeIPhone = document.getElementById("remove-iPhone");
       removeIPhone.addEventListener("click", function(){
-         removeFromCart("iPhone-order-quantity")
+         removeFromCart("iPhone-order-quantity");
+         updateItemBill("iPhone-price", "iPhone-total-cost", false);
+         updateTotalBill("iPhone-price", false);
       })
 
       // add item to the shopping cart
@@ -126,6 +128,10 @@
          if(buyDecision == true){
             document.getElementById(totalCostIdForItem).innerText = currentTotal + perUnitPrice;
          }
+         else if(currentTotal > 0){
+            // if total is greater than 0, subtract from total
+            document.getElementById(totalCostIdForItem).innerText = currentTotal - perUnitPrice;
+         }
       }
 
       // get unit price of each item
@@ -147,11 +153,14 @@
       }
 
       // update sub total cost with each change in order
-      function updateSubTotal(itemPriceId, buyDecision){
-         const itemPrice = getUnitPrice(itemPriceId);
+      function updateSubTotal(currentItemPriceId, buyDecision){
+         const currentItemPrice = getUnitPrice(currentItemPriceId);
          const currentSubTotal = getSubTotal();
          if(buyDecision == true){
-            document.getElementById("sub-total").innerText = currentSubTotal + itemPrice;
+            document.getElementById("sub-total").innerText = currentSubTotal + currentItemPrice;
+         }
+         else if(currentSubTotal >= currentItemPrice){
+            document.getElementById("sub-total").innerText = currentSubTotal - currentItemPrice;
          }
       }
 
