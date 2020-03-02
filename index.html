@@ -93,9 +93,8 @@
 
       // add item to the shopping cart
       function addToCart(itemIdName){
-         const strCurrentQuantity = document.getElementById(itemIdName).value;
-         const updatedQuantity = parseInt(strCurrentQuantity) + 1;
-         document.getElementById(itemIdName).value = updatedQuantity;
+         const currentQuantity = getCurrentQuantity(itemIdName);
+         document.getElementById(itemIdName).value = currentQuantity + 1;
       }
 
       // remove item from shopping cart
