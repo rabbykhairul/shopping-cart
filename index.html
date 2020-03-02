@@ -22,7 +22,7 @@
                         <img src="images/product-1.png" alt="">
                         <div>
                            <h5>iPhone 11 128GB Black</h5>
-                           <h6>$ 1219</h6>
+                           <h6>$ <span id="iPhone-price">1219</span></h6>
                         </div>
                      </div>
 
@@ -32,7 +32,7 @@
                            <input id="iPhone-order-quantity" type="text" class="form-control text-center" value="1">
                            <button id="add-iPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5 id="iPhone-total-cost">$1219</h5>
+                        <h5>$<span id="iPhone-total-cost">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -89,6 +89,7 @@
       const addIPhone = document.getElementById("add-iPhone");
       addIPhone.addEventListener("click", function(){
          addToCart("iPhone-order-quantity");
+         updateBill("iPhone-price", "iPhone-total-cost", true);
       })
 
       // revert order
@@ -115,6 +116,27 @@
       function getCurrentQuantity(itemIdName){
          const strCurrentQuantity = document.getElementById(itemIdName).value;
          return parseInt(strCurrentQuantity);
+      }
+
+      // update bill with each change in order condition
+      function updateBill(itemPriceId, totalCostIdForItem, buyDecision){
+         const perUnitPrice = getUnitPrice(itemPriceId);
+         const currentTotal = getCurrentTotal(totalCostIdForItem);
+         if(buyDecision == true){
+            document.getElementById(totalCostIdForItem).innerText = currentTotal + perUnitPrice;
+         }
+      }
+
+      // get unit price of each item
+      function getUnitPrice(itemPriceId){
+         const strPrice = document.getElementById(itemPriceId).innerText;
+         return parseFloat(strPrice);
+      }
+
+      // get current total cost for each item order quantity
+      function getCurrentTotal(totalCostIdForItem){
+         const strTotalCost = document.getElementById(totalCostIdForItem).innerText;
+         return parseFloat(strTotalCost);
       }
    </script>
 </body>
