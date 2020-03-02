@@ -89,7 +89,7 @@
       const addIPhone = document.getElementById("add-iPhone");
       addIPhone.addEventListener("click", function(){
          addToCart("iPhone-order-quantity");
-         updateBill("iPhone-price", "iPhone-total-cost", true);
+         updateItemBill("iPhone-price", "iPhone-total-cost", true);
       })
 
       // revert order
@@ -118,8 +118,8 @@
          return parseInt(strCurrentQuantity);
       }
 
-      // update bill with each change in order condition
-      function updateBill(itemPriceId, totalCostIdForItem, buyDecision){
+      // update each item's bill with each change in order condition
+      function updateItemBill(itemPriceId, totalCostIdForItem, buyDecision){
          const perUnitPrice = getUnitPrice(itemPriceId);
          const currentTotal = getCurrentTotal(totalCostIdForItem);
          if(buyDecision == true){
