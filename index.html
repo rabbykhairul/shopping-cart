@@ -44,17 +44,17 @@
                         <img src="images/product-2.png" alt="">
                         <div>
                            <h5>iPhone 11 Silicone Case - Black</h5>
-                           <h6>$ 59</h6>
+                           <h6>$ <span id="phone-case-price">59</span></h6>
                         </div>
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="remove-phone-case" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-case-order-quantity" type="text" class="form-control text-center" value="1">
+                           <button id="add-phone-case" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="phone-case-total-cost">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -71,7 +71,7 @@
 
                      <div class="col-md-4 status">
                         <h5>$ <span id="sub-total">1278</span></h5>
-                        <h5>$0</h5>
+                        <h5>$ 0</h5>
                         <h5>$ <span id="total-bill">1278</span></h5>
                      </div>
                   </div>
@@ -93,12 +93,28 @@
          updateTotalBill("iPhone-price", true);
       })
 
-      // revert order
+      // revert i-Phone order
       const removeIPhone = document.getElementById("remove-iPhone");
       removeIPhone.addEventListener("click", function(){
          removeFromCart("iPhone-order-quantity");
          updateItemBill("iPhone-price", "iPhone-total-cost", false);
          updateTotalBill("iPhone-price", false);
+      })
+
+      // order phone case
+      const addPhoneCase = document.getElementById("add-phone-case");
+      addPhoneCase.addEventListener("click", function(){
+         addToCart("phone-case-order-quantity");
+         updateItemBill("phone-case-price", "phone-case-total-cost", true);
+         updateTotalBill("phone-case-price", true);
+      })
+
+      // revert phone case order
+      const removePhoneCase = document.getElementById("remove-phone-case");
+      removePhoneCase.addEventListener("click", function(){
+         removeFromCart("phone-case-order-quantity");
+         updateItemBill("phone-case-price", "phone-case-total-cost", false);
+         updateTotalBill("phone-case-price", false);
       })
 
       // add item to the shopping cart
