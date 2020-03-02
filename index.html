@@ -26,10 +26,10 @@
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
                            <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <input id="iPhone-order-qunatity" type="text" class="form-control text-center" value="1">
+                           <button id="add-iPhone" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5 id="iPhone-total-cost">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -77,6 +77,21 @@
          </div>
       </div>
    </section>
+
+   <script>
+      // order i-Phone
+      const addIPhone = document.getElementById("add-iPhone");
+      addIPhone.addEventListener("click", function(){
+         addToCart("iPhone-order-qunatity");
+      })
+
+      // add item to the shopping cart
+      function addToCart(itemIdName){
+         const strCurrentQuantity = document.getElementById(itemIdName).value;
+         const updatedQuantity = parseInt(strCurrentQuantity) + 1;
+         document.getElementById(itemIdName).value = updatedQuantity;
+      }
+   </script>
 </body>
 
 </html>
